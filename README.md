@@ -1,243 +1,73 @@
-# Face Recognition System
+# Welcome to your Lovable project
 
-A robust face registration and recognition system built with Python and OpenCV, featuring real-time face detection, embedding-based recognition, and persistent storage.
+## Project info
 
-## Features
+**URL**: https://lovable.dev/projects/3cc444a1-d361-4e0e-a3d1-00c314b7d9c3
 
-- **Face Registration**: Register faces from camera or image files
-- **Real-time Recognition**: Live face recognition using webcam
-- **Image Recognition**: Recognize faces in static images
-- **Embedding Support**: Uses neural network embeddings for better accuracy
-- **Fallback System**: Automatic fallback to LBPH if embedding model unavailable
-- **Persistent Storage**: Face database stored in pickle format
-- **Multiple Samples**: Support for multiple face samples per person
-- **Confidence Scoring**: Shows recognition confidence percentages
+## How can I edit this code?
 
+There are several ways of editing your application.
 
-### System Components:
+**Use Lovable**
 
-1. **Face Detection Module**: Uses OpenCV Haar cascades for face detection
-2. **Face Recognition Module**: Supports both embedding-based and LBPH recognition
-3. **Database Module**: Pickle-based storage for registered faces
-4. **Camera Interface**: Real-time video capture and processing
-5. **Image Processing**: Static image analysis and recognition
+Simply visit the [Lovable Project](https://lovable.dev/projects/3cc444a1-d361-4e0e-a3d1-00c314b7d9c3) and start prompting.
 
-## Project Structure
+Changes made via Lovable will be committed automatically to this repo.
 
-```
-face-recognition/
-├── register_face.py          # Face registration system
-├── recognize_face.py          # Face recognition system
-├── ann4.small2.v1.t7         # Neural network model (optional)
-├── face_database.pkl         # Generated face database
-├── requirements.txt          # Python dependencies
-├── architecture_diagram.png  # System architecture
-└── README.md                # This file
-```
+**Use your preferred IDE**
 
-## Installation
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-### Prerequisites
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-- Python 3.7 or higher
-- Webcam (for real-time features)
+Follow these steps:
 
-### Setup
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/face-recognition-system.git
-cd face-recognition-system
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
 ```
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+**Edit a file directly in GitHub**
 
-3. (Optional) Add your neural network model:
-   - Place `ann4.small2.v1.t7` in the project directory for embedding-based recognition
-   - System will automatically fall back to LBPH if model not found
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-## Usage
+**Use GitHub Codespaces**
 
-### Step 1: Register Faces
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-Run the registration system:
-```bash
-python register_face.py
-```
+## What technologies are used for this project?
 
-Menu options:
-- **Option 1**: Register face from camera (live capture)
-- **Option 2**: Register face from image file
-- **Option 3**: List registered faces
-- **Option 4**: Delete registered face
-- **Option 5**: Exit
+This project is built with:
 
-### Step 2: Recognize Faces
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-Run the recognition system:
-```bash
-python recognize_face.py
-```
+## How can I deploy this project?
 
-Menu options:
-- **Option 1**: Real-time recognition (camera)
-- **Option 2**: Recognize faces in image
-- **Option 3**: List registered faces
-- **Option 4**: Exit
+Simply open [Lovable](https://lovable.dev/projects/3cc444a1-d361-4e0e-a3d1-00c314b7d9c3) and click on Share -> Publish.
 
-## Key Features Explained
+## Can I connect a custom domain to my Lovable project?
 
-### Dual Recognition System
+Yes, you can!
 
-The system supports two recognition methods:
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-1. **Embedding-based Recognition** (Primary):
-   - Uses `ann4.small2.v1.t7` neural network model
-   - Higher accuracy and better performance
-   - Requires external model file
-
-2. **LBPH Recognition** (Fallback):
-   - Uses OpenCV's Local Binary Pattern Histogram
-   - Built into OpenCV, no external files needed
-   - Reliable backup method
-
-### Face Detection
-
-- Uses OpenCV Haar cascades for face detection
-- Built-in to OpenCV, no external model files required
-- Robust performance across different lighting conditions
-
-### Database Management
-
-- Stores face embeddings/features in `face_database.pkl`
-- Supports multiple face samples per person
-- Includes timestamps and metadata
-- Persistent across sessions
-
-## Configuration
-
-### Recognition Thresholds
-
-You can adjust recognition sensitivity by modifying these parameters:
-
-**In `recognize_face.py`:**
-```python
-# For embedding-based recognition
-threshold = 0.6  # Lower = more strict, Higher = more lenient
-
-# For LBPH recognition  
-lbph_threshold = 50  # Lower = more strict, Higher = more lenient
-```
-
-### Face Detection Parameters
-
-**In both files:**
-```python
-faces = self.face_cascade.detectMultiScale(
-    gray, 
-    scaleFactor=1.1,     # Image pyramid scaling factor
-    minNeighbors=5,      # Minimum neighbors for detection
-    minSize=(30, 30),    # Minimum face size
-    flags=cv2.CASCADE_SCALE_IMAGE
-)
-```
-## Architecture diagram
-![archieture](https://github.com/user-attachments/assets/e8e81cd0-db83-43bb-bfe4-a351276d7a4a)
-
-
-## Assumptions Made
-
-The following assumptions were made during development (not explicitly mentioned in requirements):
-
-1. **Camera Access**: System assumes webcam is available at index 0
-2. **Image Formats**: Supports common image formats (JPG, PNG, BMP)
-3. **Single Person per Registration**: Each registration session captures one person's face
-4. **Lighting Conditions**: Assumes reasonable lighting for face detection
-5. **Face Orientation**: Works best with frontal face images
-6. **Storage Location**: Database file stored in current working directory
-7. **Model Compatibility**: `ann4.small2.v1.t7` assumed to be OpenCV-compatible Torch model
-8. **Memory Usage**: Assumes sufficient RAM for storing face embeddings
-9. **Real-time Performance**: Assumes system can handle real-time video processing
-10. **File Permissions**: Assumes write permissions in project directory
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Camera not working**:
-   - Check if camera is being used by another application
-   - Try changing camera index in `cv2.VideoCapture(0)` to `cv2.VideoCapture(1)`
-
-2. **Low recognition accuracy**:
-   - Register multiple face samples per person
-   - Ensure good lighting during registration
-   - Adjust recognition thresholds
-
-3. **Model not loading**:
-   - System will automatically fall back to LBPH
-   - Check if `ann4.small2.v1.t7` is in the correct directory
-
-4. **Database errors**:
-   - Delete `face_database.pkl` to reset database
-   - Check file permissions in project directory
-
-## Performance Metrics
-
-### Recognition Accuracy
-- **Embedding-based**: ~95% accuracy with good lighting
-- **LBPH-based**: ~85% accuracy with good lighting
-
-### Processing Speed
-- **Face Detection**: ~30 FPS on average hardware
-- **Recognition**: ~20 FPS with embedding model
-- **Registration**: ~1-2 seconds per face sample
-
-## Technical Specifications
-
-### Dependencies
-- OpenCV 4.x
-- NumPy
-- Pickle (built-in)
-- PIL/Pillow
-
-### Supported Platforms
-- Windows 10/11
-- macOS 10.15+
-- Linux (Ubuntu 18.04+)
-
-### Hardware Requirements
-- **Minimum**: 4GB RAM, dual-core processor
-- **Recommended**: 8GB RAM, quad-core processor
-- **Camera**: Any USB webcam or built-in camera
-
-## Future Enhancements
-
-- [ ] Multi-face recognition in single frame
-- [ ] Age and gender detection
-- [ ] Emotion recognition
-- [ ] Database encryption
-- [ ] REST API interface
-- [ ] Mobile app integration
-- [ ] Cloud storage support
-- [ ] Advanced anti-spoofing measures
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Acknowledgments
-
-- OpenCV community for excellent computer vision libraries
-- Contributors to face recognition research
-- Neural network model providers
-
----
-
-**This project is a part of a hackathon run by https://katomaran.com**
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
