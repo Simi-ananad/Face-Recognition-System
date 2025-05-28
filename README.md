@@ -1,5 +1,3 @@
-# Face-Recognition-System
-
 # Face Recognition System
 
 A robust face registration and recognition system built with Python and OpenCV, featuring real-time face detection, embedding-based recognition, and persistent storage.
